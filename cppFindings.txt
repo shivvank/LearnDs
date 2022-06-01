@@ -1,0 +1,2 @@
+temp->next!=null
+gives last element
