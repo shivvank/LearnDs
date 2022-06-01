@@ -1,6 +1,6 @@
 #include<bits/stdc++.h>
-class node{
-    
+class node
+{
     public :
     int data;
     node(int x)

@@ -1,24 +1,5 @@
-#include "Node.cpp"
+#include "node.cpp"
 using namespace std;
-
-//Display all the elements of Linked List 
-void DisplayLL(node * head)
-{
-    if(head==NULL)
-    {
-        cout<<"Linked List is Empty"<<endl;
-    }
-    while(head->next!=NULL)
-    {
-        cout<<head->data<<"->";
-        head=head->next;
-    }
-    cout<<head->data<<endl;
-}
-
-
-//Insertion in a Linked List:
-//Insert at Beginning
 node * InsertBeginLL(node *head, int x)
 {
     node * tempNode=new node(x);
@@ -31,7 +12,6 @@ node * InsertBeginLL(node *head, int x)
     head=tempNode;
     return head;
 }
-//Insert at Middle
 node * InsertMiddleLL(node * head,int x)
 {
     node * tempNode=new node(x);
@@ -53,7 +33,6 @@ node * InsertMiddleLL(node * head,int x)
     tempNode->next=temp2;
     return head;
 }
-//Insert at Last
 node * InsertEndLL(node * head,int x)
 {
     //if no element 
@@ -72,38 +51,19 @@ node * InsertEndLL(node * head,int x)
     temp->next=tempNode;
     return head;
 }
-//Delete from a linked list :
-
-//Delete Middle Element
-/*
-whats middle?
-for even number of elements : n/2 & (n/2)+1
-    cases: if only 2 present -> delete both
-for odd number of elements : n/2(int) 
-    cases : if only 1 present 
-    should count or not ?
-how to find middle ? two pointers method : one with speed 1 & other with speed 2
-less complexity with doubly LL
-*/
-node * DeleteMiddleLL(node * head)
+void DisplayLL(node * head)
 {
-    int count=0;
-    node * temp1=head;
-    node * temp2=head;
-    node * tempPrev=NULL;
-    while(temp2->next!=NULL&&temp2->next->next!=NULL)
+    if(head==NULL)
     {
-        tempPrev=temp1;
-        temp1=temp1->next;
-        count++;
-        temp2=temp2->next->next;
+        cout<<"Linked List is Empty"<<endl;
     }
-    tempPrev->next=temp1->next;
-    delete temp1;
-    return head;
+    while(head->next!=NULL)
+    {
+        cout<<head->data<<"->";
+        head=head->next;
+    }
+    cout<<head->data<<endl;
 }
-
-//Delete First Element
 node * DeleteFirstLL(node * head)
 {
     //if empty 
@@ -124,7 +84,23 @@ node * DeleteFirstLL(node * head)
     delete temp;
     return head;
 }
-//Delete last element
+node * DeleteMiddleLL(node * head)
+{
+    int count=0;
+    node * temp1=head;
+    node * temp2=head;
+    node * tempPrev=NULL;
+    while(temp2->next!=NULL&&temp2->next->next!=NULL)
+    {
+        tempPrev=temp1;
+        temp1=temp1->next;
+        count++;
+        temp2=temp2->next->next;
+    }
+    tempPrev->next=temp1->next;
+    delete temp1;
+    return head;
+}
 node * DeleteLastLL(node *head)
 {
     //Empty Linked List
@@ -149,40 +125,21 @@ node * DeleteLastLL(node *head)
     return head;
 
 }
-int main()
+node * DeleteAt_i(node * head,int i)
 {
-    node *head=NULL;
-    cout<<"Enter the value : ";
-    char ch='y';
-    int x;
-    cin>>x;
-    head=new node(x);
-    cout<<"Want to enter more elements? (y/n)"<<endl;
-    cin>>ch;
-    while(ch=='y')
+    node * temp=head;
+    node * tempPrev=NULL;
+    while(i--)
     {
-        cout<<"Enter the value : ";
-        cin>>x;
-        head=InsertEndLL(head,x);
-        cout<<"Want to enter more elements? (y/n)"<<endl;
-        cin>>ch;
+        if(temp==NULL)
+        {
+            cout<<"Cannot delete as ith element doesn't exist"<<endl;
+            return NULL;
+        }
+        tempPrev=temp;
+        temp=temp->next;
     }
-    // DisplayLL(head);
-    // head=DeleteMiddleLL(head);
-    DisplayLL(head);
-    head=InsertMiddleLL(head,10);
-    DisplayLL(head);
-    // ch='y';
-    // while(ch=='y')
-    // {
-    //     head=DeleteLastLL(head);
-        
-    //     if(head!=NULL)
-    //     {
-    //         DisplayLL(head);
-    //         cout<<"Want to delete more elements? (y/n)"<<endl;
-    //         cin>>ch;
-    //     }
-    // }
-    return 0;
+    tempPrev->next=temp->next;
+    delete temp;
+    return head;
 }
