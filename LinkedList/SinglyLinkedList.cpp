@@ -41,6 +41,7 @@ node * InsertMiddleLL(node * head,int x)
         return head;
     }
     node * temp1=head;
+    int count =0;
     node * temp2=head;
     while(temp2->next!=NULL&&temp2->next->next!=NULL)
     {
@@ -49,7 +50,7 @@ node * InsertMiddleLL(node * head,int x)
     }
     temp2=temp1->next;
     temp1->next=tempNode;
-    tempNode->next=tempNode;
+    tempNode->next=temp2;
     return head;
 }
 //Insert at Last
@@ -166,8 +167,10 @@ int main()
         cout<<"Want to enter more elements? (y/n)"<<endl;
         cin>>ch;
     }
+    // DisplayLL(head);
+    // head=DeleteMiddleLL(head);
     DisplayLL(head);
-    head=DeleteMiddleLL(head);
+    head=InsertMiddleLL(head,10);
     DisplayLL(head);
     // ch='y';
     // while(ch=='y')
