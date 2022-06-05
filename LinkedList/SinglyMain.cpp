@@ -50,7 +50,7 @@ int main()
     // {
     //     cout<<"No it is not Palindrome"<<endl;
     // }
-    RemoveDuplicates(head);
+    RemoveDuplicatesUnsorted(head);
     DisplayLL(head);
     return 0;
 }

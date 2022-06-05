@@ -347,9 +347,8 @@ bool IsSinglyPalindrome(node * head)
         return false;
     }
 }
-
 //Remove Duplicates from Sorted Linked List
-void RemoveDuplicates(node * head)
+void RemoveDuplicatesSorted(node * head)
 {
     while(head->next!=NULL)
     {
@@ -368,4 +367,32 @@ void RemoveDuplicates(node * head)
         }
     }
 }
-
+void RemoveDuplicatesUnsorted(node * head)
+{
+    unordered_set<int> s;
+    s.insert(head->data);
+    while(head->next!=NULL)
+    {
+        if(s.find(head->next->data)!=s.end())
+        {
+            if(head->next->next==NULL)
+            {
+                head->next=NULL;
+            }
+            else
+            {
+                node * temp1=head;
+                node *temp2=head->next;
+                node * temp3=head->next->next;
+                temp1->next=temp3;
+                temp2->next=NULL;
+                delete temp2;
+            }
+        }
+        else
+        {
+            s.insert(head->next->data);
+            head=head->next;
+        }
+    }
+}
