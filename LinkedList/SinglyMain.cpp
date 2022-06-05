@@ -18,11 +18,18 @@ int main()
         cout<<"Want to enter more elements? (y/n)"<<endl;
         cin>>ch;
     }
+    DisplayLL(head);
+    // cout<<"Length of Linked List : "<<SinglyLengthIterative(head)<<endl;
+    // bool flag=SearchSinglyIterative(head,4);
+    // if(flag)
+    //     cout<<"ELement Found"<<endl;
+    
+    // DisplayLL(SinglyReverse(head));
     // DisplayLL(head);
     // head=DeleteMiddleLL(head);
-    DisplayLL(head);
-    head=InsertMiddleLL(head,10);
-    DisplayLL(head);
+    // DisplayLL(head);
+    // head=InsertMiddleLL(head,10);
+    // DisplayLL(head);
     // ch='y';
     // while(ch=='y')
     // {
@@ -35,5 +42,15 @@ int main()
     //         cin>>ch;
     //     }
     // }
+    // if(IsSinglyPalindrome(head))
+    // {
+    //     cout<<"It is Palindrome !"<<endl;
+    // }
+    // else
+    // {
+    //     cout<<"No it is not Palindrome"<<endl;
+    // }
+    RemoveDuplicates(head);
+    DisplayLL(head);
     return 0;
 }
